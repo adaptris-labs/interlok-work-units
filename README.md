@@ -41,6 +41,17 @@ Sometimes your service-list will require additional files; for example if you're
 </service-collection>
 ``` 
 
+### Work Unit Service ###
+
+Simply use the work-unit-service to execute your jar'd work unit.
+
+```xml
+<work-unit-service>
+   <unique-id>elegant-wozniak</unique-id>
+   <work-unit-name>MyWorkUnit</work-unit-name>
+</work-unit-service>
+```
+
 ### Dynamic Execution ###
 
 Once you have your work unit Jar file and it's dropped into your Interlok lib directory (make sure your re-start Interlok) you can then edit your main configuration adding a new service.  The service you'll choose is the __dynamic-service-executor (with url)__. 
@@ -55,7 +66,7 @@ Assuming your work unit jar file (name is not important) contains a service-list
 </dynamic-service-executor>
 ```
 
-Now imagine your work unit jar file (again, not of the jar file is unimportant) has a service-list configuration burried a couple of levels deep in a directory structure like this; __/some/directory/__ then you would configure your dynamic service like this;
+Now imagine your work unit jar file (again, name of the jar file is unimportant) has a service-list configuration burried a couple of levels deep in a directory structure like this; __/some/directory/__ then you would configure your dynamic service like this;
 ```xml
 <dynamic-service-executor>
   <unique-id>dynamic-service</unique-id>
