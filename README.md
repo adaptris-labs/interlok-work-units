@@ -28,7 +28,7 @@ That's it, it's just a service list.  An example;
 </service-collection>
 ```
 
-Sometimes your service-list will require additional files; for example if you're configuring a transform then you'll need the XSL file.  Sometimes the additional resource required will be remote, perhaps you're serving a transform over http.  But other times you want the resource locally packaged with your configuration.  In this case your work unit jar file will contain your service-list configuration and another supporting file like an XSL transform named "my-transform.xsl".  In these cases it's important that in your work unit's service list you refer to the packaged resource file like this using the __workunit:__ url handler;
+Sometimes your service-list will require additional files; for example if you're configuring a transform then you'll need the XSL file.  Sometimes the additional resource required will be remote, perhaps you're serving a transform over http.  But other times you want the resource locally packaged with your configuration.  In this case your work unit jar file will contain your service-list configuration and another supporting file like an XSL transform named "my-transform.xsl".  In these cases it's important that in your work unit's service list you refer to the packaged resource file like this using the  __workunit:__  url handler;
 
 ```xml
 <service-collection class="service-list">
@@ -39,16 +39,19 @@ Sometimes your service-list will require additional files; for example if you're
 		</xml-transform-service>
 	</services>
 </service-collection>
-``` 
+```
 
 ### Work Unit Service ###
 
-Simply use the work-unit-service to execute your jar'd work unit.
+Simply use the work-unit-service to execute your jar's work unit.
 
 ```xml
 <work-unit-service>
-   <unique-id>elegant-wozniak</unique-id>
-   <work-unit-name>MyWorkUnit</work-unit-name>
+ <unique-id>work-unit-service</unique-id>
+ <!-- Jar name without .jar -->
+ <work-unit-name>my-work-unit</work-unit-name>
+ <!-- Xml name without .xml. Optional, default to work-unit -->
+ <xml-config-name>my-work-unit</xml-config-name>
 </work-unit-service>
 ```
 
@@ -57,6 +60,7 @@ Simply use the work-unit-service to execute your jar'd work unit.
 Once you have your work unit Jar file and it's dropped into your Interlok lib directory (make sure your re-start Interlok) you can then edit your main configuration adding a new service.  The service you'll choose is the __dynamic-service-executor (with url)__. 
 
 Assuming your work unit jar file (name is not important) contains a service-list configuration named my-service.xml at the root of the jar, then you would configure your dynamic service executor with the following URL;
+
 ```xml
 <dynamic-service-executor>
   <unique-id>dynamic-service</unique-id>
@@ -66,7 +70,19 @@ Assuming your work unit jar file (name is not important) contains a service-list
 </dynamic-service-executor>
 ```
 
-Now imagine your work unit jar file (again, name of the jar file is unimportant) has a service-list configuration burried a couple of levels deep in a directory structure like this; __/some/directory/__ then you would configure your dynamic service like this;
+If there is a risk of multiple jars having the same xml file name you can specify the jar name
+
+```xml
+<dynamic-service-executor>
+  <unique-id>dynamic-service</unique-id>
+  <service-extractor class="dynamic-service-from-url">
+    <url>workunit:my-work-unit!/my-service.xml</url>
+  </service-extractor>
+</dynamic-service-executor>
+```
+
+Now imagine your work unit jar file (again, name of the jar file is unimportant) has a service-list configuration buried a couple of levels deep in a directory structure like this; __/some/directory/__ then you would configure your dynamic service like this;
+
 ```xml
 <dynamic-service-executor>
   <unique-id>dynamic-service</unique-id>
@@ -80,9 +96,13 @@ Now imagine your work unit jar file (again, name of the jar file is unimportant)
 
 The second way to configure a work unit inside your Interlok configuration is to use a work unit service.
 Package your work-unit as shown above and if you have a service-list file packed in that jar work unit jar file named __my-services.xml__, then inside your main Interlok configuration you can refer to your work unit's service list simply like this;
+
 ```xml
 <work-unit-service>
-  <unique-id>elegant-wozniak</unique-id>
-  <work-unit-name>my-services</work-unit-name>
+  <unique-id>work-unit-service</unique-id>
+  <!-- Jar name without .jar -->
+  <work-unit-name>my-work-unit</work-unit-name>
+  <!-- Xml name without .xml. Optional, default to work-unit -->
+  <xml-config-name>my-work-unit</xml-config-name>
 </work-unit-service>
 ```
