@@ -22,6 +22,7 @@ import com.adaptris.core.ServiceException;
 import com.adaptris.core.ServiceImp;
 import com.adaptris.core.util.ExceptionHelper;
 import com.adaptris.core.util.LifecycleHelper;
+import com.adaptris.workunit.ChainURLStreamHandlerProvider;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 import lombok.AccessLevel;
@@ -40,6 +41,10 @@ public class WorkUnitService extends ServiceImp {
   private static final String XML_EXTENSION = ".xml";
   private static final String DEFAULY_XML_NAME = "work-unit";
   private static final String SEPARATOR = "!/";
+
+  static {
+    ChainURLStreamHandlerProvider.init();
+  }
 
   /**
    * The name of the work unit jar file without the .jar

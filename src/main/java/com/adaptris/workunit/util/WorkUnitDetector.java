@@ -14,14 +14,9 @@ import com.adaptris.core.util.PropertyHelper;
 
 public class WorkUnitDetector {
 
-  private static final String WORK_UNIT = "META-INF/work-unit";
   private static final String ADAPTRIS_VERSION = "META-INF/adaptris-version";
 
   private WorkUnitDetector() {
-  }
-
-  public static Collection<URL> listUrls() throws IOException {
-    return listUrls(WORK_UNIT);
   }
 
   public static Collection<URL> listUrls(String resourceName) throws IOException {
