@@ -31,7 +31,7 @@ public class ChainURLStreamHandlerProvider extends URLStreamHandlerProvider {
     try {
       URL.setURLStreamHandlerFactory(new ChainURLStreamHandlerProvider());
     } catch (Error error) {
-      log.warn("A URLStreamHandlerFactory was already registered and therefore the ChainURLStreamHandlerProvider cannot be registered",
+      log.error("A URLStreamHandlerFactory was already registered and therefore the ChainURLStreamHandlerProvider cannot be registered",
           error);
     }
   }
