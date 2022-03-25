@@ -41,6 +41,19 @@ Sometimes your service-list will require additional files; for example if you're
 </service-collection>
 ```
 
+If we want to specify the jar name
+
+```xml
+<service-collection class="service-list">
+  <services>
+    <xml-transform-service>
+      <unique-id>transform-service</unique-id>
+      <url>workunit:my-work-unit!/my-transform.xsl</url>
+    </xml-transform-service>
+  </services>
+</service-collection>
+```
+
 ### Work Unit Service ###
 
 Simply use the work-unit-service to execute your jar's work unit.
