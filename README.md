@@ -19,12 +19,12 @@ That's it, it's just a service list.  An example;
 
 ```xml
 <service-collection class="service-list">
-	<services>
-		<service class="log-message-service">
-			<unique-id>log-message-service</unique-id>
-			<log-level>DEBUG</log-level>
-		</service>
-	</services>
+  <services>
+    <service class="log-message-service">
+      <unique-id>log-message-service</unique-id>
+      <log-level>DEBUG</log-level>
+    </service>
+  </services>
 </service-collection>
 ```
 
@@ -32,12 +32,12 @@ Sometimes your service-list will require additional files; for example if you're
 
 ```xml
 <service-collection class="service-list">
-	<services>
-		<xml-transform-service>
-			<unique-id>transform-service</unique-id>
-			<url>workunit:my-transform.xsl</url>
-		</xml-transform-service>
-	</services>
+  <services>
+    <xml-transform-service>
+      <unique-id>transform-service</unique-id>
+      <url>workunit:my-transform.xsl</url>
+    </xml-transform-service>
+  </services>
 </service-collection>
 ```
 
@@ -47,11 +47,11 @@ Simply use the work-unit-service to execute your jar's work unit.
 
 ```xml
 <work-unit-service>
- <unique-id>work-unit-service</unique-id>
- <!-- Jar name without .jar -->
- <work-unit-name>my-work-unit</work-unit-name>
- <!-- Xml name without .xml. Optional, default to work-unit -->
- <xml-config-name>my-work-unit</xml-config-name>
+  <unique-id>work-unit-service</unique-id>
+  <!-- Jar name without .jar -->
+  <work-unit-name>my-work-unit</work-unit-name>
+  <!-- Xml name without .xml. Optional, default to work-unit -->
+  <xml-config-name>my-work-unit</xml-config-name>
 </work-unit-service>
 ```
 
